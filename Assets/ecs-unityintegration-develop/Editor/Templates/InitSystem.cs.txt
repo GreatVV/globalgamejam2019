@@ -1,0 +1,15 @@
+﻿using Leopotam.Ecs;
+
+namespace #NS# {
+    [EcsInject]
+    sealed class #SCRIPTNAME# : IEcsInitSystem {
+        // Auto-injected fields.
+        EcsWorld _world = null;
+        
+        void IEcsInitSystem.Initialize () {
+            // Add your initialize code here.
+        }
+
+        void IEcsInitSystem.Destroy () { }
+    }
+}
