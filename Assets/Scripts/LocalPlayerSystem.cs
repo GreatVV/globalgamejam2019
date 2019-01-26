@@ -23,7 +23,8 @@ namespace Client
         {
             _systems = new EcsSystems(_world);
 
-            _systems.Add(new UpdateNonServerShipPositionSystem())
+            _systems
+
                 .Inject(PhotonServer)
                 .Inject(SceneDescription)
                 .Inject(PlayerCache)

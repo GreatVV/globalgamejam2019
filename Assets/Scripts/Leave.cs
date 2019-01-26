@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    internal class Leave
+    public class Leave
     {
     }
 }

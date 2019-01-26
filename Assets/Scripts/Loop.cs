@@ -1,5 +1,4 @@
 using Leopotam.Ecs;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,20 +19,22 @@ namespace Client {
 #endif
             var playerCache = new PlayerCache();
             var photonServer = new PhotonServer();
+            var gameState = new GameState();
 
             SceneDescription.Init(_world);
 
             _systems
                 // Register your systems here, for example:
                 .Add (new ConnectToPhotonSystem())
-                .Add(new CreateTestPlayer())
-                .Add(new RemoveTestPlayer())
                 .Add(new ServerSystem())
                 .Add(new LocalPlayerSystem())
+                .Add(new UpdateShipPositionSystem())
+                .Add(new ShowRolesSystem())
                 .Add(new SyncShipPosition())
                 .Inject(SceneDescription)
                 .Inject(playerCache)
                 .Inject(photonServer)
+                .Inject(gameState)
 .Initialize ();
         }
 

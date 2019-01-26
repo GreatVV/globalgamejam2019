@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Client
 {
     [EcsInject]
-    public class UpdateNonServerShipPositionSystem : EcsReactiveSystem<RoomData>
+    public class UpdateShipPositionSystem : EcsReactiveSystem<RoomData>
     {
         private EcsWorld _world;
         private PhotonServer PhotonServer;
@@ -21,11 +21,13 @@ namespace Client
                 var entity = ReactedEntities[i];
                 var roomData = _world.GetComponent<RoomData>(entity).value;
 
-                
-                     var position = (Vector3)roomData[RoomDataConstants.ShipPosition];
-                     _world.CreateEntityWith<ShipPosition>(out var shipPosition);
-                     shipPosition.value = position;
-                
+                if (roomData.ContainsKey(RoomDataConstants.ShipPosition))
+                {
+
+                    var position = (Vector3) roomData[RoomDataConstants.ShipPosition];
+                    _world.CreateEntityWith<ShipPosition>(out var shipPosition);
+                    shipPosition.value = position;
+                }
             }
         }
     }

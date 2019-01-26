@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    internal class GamePlayer
+    public class GamePlayer
     {
         public int number;
     }

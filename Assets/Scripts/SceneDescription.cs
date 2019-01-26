@@ -6,6 +6,7 @@ namespace Client
     public class SceneDescription : MonoBehaviour
     {
         public Transform Ship;
+        public UI UI;
 
         public void Init(EcsWorld world)
         {
