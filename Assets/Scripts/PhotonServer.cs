@@ -22,8 +22,8 @@ namespace Client
 
         internal void ConnectToRandomRoom ()
         {
-            OpJoinOrCreateRoom ("smoothies", new RoomOptions(), TypedLobby.Default);
-            //OpJoinRandomRoom(null, 4);
+            //OpJoinOrCreateRoom ("smoothies", new RoomOptions(), TypedLobby.Default);
+            OpJoinRandomRoom(null, 4);
         }
 
         public void CreateRandomRoom ()

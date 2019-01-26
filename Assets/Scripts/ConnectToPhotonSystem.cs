@@ -4,6 +4,7 @@ using ExitGames.Client.Photon;
 using ExitGames.Client.Photon.LoadBalancing;
 using Leopotam.Ecs;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Client
 {
@@ -158,6 +159,22 @@ namespace Client
                         killAsteroids.WithEffect = true;
                     }
                     break;
+                case GameEventCode.ShootAsteroid:
+                    {
+                        var asteroidId = (int) obj.Parameters[ParameterCode.Data];
+                        _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
+                        killAsteroids.value = new [] { asteroidId };
+                        killAsteroids.WithEffect = true;
+                    }
+                    break;
+                case GameEventCode.ChangeShootCamera:
+                    {
+                        var target = (Vector3) obj.Parameters[ParameterCode.Data];
+                        _world.CreateEntityWith<ChangeShootTarget> (out var shootTarget);
+                        shootTarget.value = target;
+                    }
+                    break;
+
             }
         }
 

@@ -19,5 +19,9 @@ namespace Client
         public float DamageFromAsteroid = 10;
 
         public GameObject AsteroidDeathEffect;
+
+        [Header("Shoot Camera Config")]
+        public float xSpeed = 10;
+        public float ShootCameraDistance = 5;
     }
 }

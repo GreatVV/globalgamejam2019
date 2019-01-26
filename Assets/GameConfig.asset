@@ -27,3 +27,5 @@ MonoBehaviour:
   DamageFromAsteroid: 10
   AsteroidDeathEffect: {fileID: 5462274990457412601, guid: 54d3ebceb2b1af848b2bd767ee30d0a8,
     type: 3}
+  xSpeed: 120
+  ShootCameraDistance: 5

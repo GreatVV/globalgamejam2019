@@ -48,6 +48,8 @@ namespace Client
                                 {
                                     _world.MarkComponentAsUpdated<Role> (playerEntity);
                                 }
+                            } else {
+                                _world.MarkComponentAsUpdated<Role> (playerEntity);
                             }
                             roleComponent.value = role;
                         }
