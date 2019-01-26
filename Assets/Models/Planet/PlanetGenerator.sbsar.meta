@@ -44,23 +44,7 @@ ScriptedImporter:
       uid=\"754204330\" type=\"0\" value=\"0.995\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: diffuse,height,emissive,metallic,normal
-    texturePackingList:
-    - outputName: diffuse
-      alphaSource: opacity
-    - outputName: height
-      alphaSource: height
-    - outputName: emissive
-      alphaSource: emissive
-    - outputName: specular
-      alphaSource: specular
-    - outputName: roughness
-      alphaSource: roughness
-    - outputName: metallic
-      alphaSource: smoothness
-    - outputName: normal
-      alphaSource: normal
-    - outputName: opacity
-      alphaSource: opacity
+    texturePackingList: []
     textureParameters:
     - textureName: AFFplanoid - roughness
       wrapMode: 0
