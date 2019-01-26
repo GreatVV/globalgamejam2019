@@ -13,7 +13,7 @@ namespace Client
         private EcsWorld _world;
         private PhotonServer _photonServer;
         private GameState _gameState;
-        private readonly Hashtable _hashtable = new Hashtable ();
+        private static readonly Hashtable _hashtable = new Hashtable ();
 
         protected override EcsReactiveType GetReactiveType ()
         {
@@ -26,33 +26,47 @@ namespace Client
             {
                 var entity = ReactedEntities[i];
                 var player = _world.GetComponent<GamePlayer> (entity);
-                var photonPlayer = _photonServer.CurrentRoom.Players[player.number];
+                if (_world.GetComponent<Leave> (entity) != null)
+                {
+                    continue;
+                }
+
+                var players = _photonServer.CurrentRoom.Players;
+
+                var photonPlayer = players[player.number];
 
                 var values = Enum.GetValues (typeof (PlayerRole)) as PlayerRole[];
-                for (int j = 1; j < values.Length; j++)
+                if (photonPlayer.CustomProperties.ContainsKey (RoomDataConstants.PlayerRole))
                 {
-                    if (!_gameState.Roles.ContainsKey (values[j]))
-                    {
-                        _hashtable.Clear ();
-                        _hashtable[RoomDataConstants.PlayerRole] = photonPlayer.ID;
-                        _gameState.Roles[(PlayerRole) j] = player.number;
-                        photonPlayer.SetCustomProperties (_hashtable);
-
-                        UnityEngine.Debug.Log ($"Assign player {player.number} to {(PlayerRole)j}");
-                        break;
-                    }
+                    _gameState.Roles[player.number] = (PlayerRole) photonPlayer.CustomProperties[RoomDataConstants.PlayerRole];
                 }
-            }
+                else
+                {
+                    var freeRole = _gameState.NextFreeRole ();
+                    SetPlayerToRole (_photonServer, _gameState, player.number, freeRole);
+                    
+                }
+            }           
+        }
 
+        public static void SetPlayerToRole (PhotonServer photonServer, GameState gameState, int actorNumber, PlayerRole newRole)
+        {
+            var photonPlayer = photonServer.CurrentRoom.Players[actorNumber];
             _hashtable.Clear ();
-            _hashtable[RoomDataConstants.PlayerRole] = _gameState.Roles.Serialize ();
-            _photonServer.CurrentRoom.SetCustomProperties (_hashtable);
+            _hashtable[RoomDataConstants.PlayerRole] = (int) newRole;
+            photonPlayer.SetCustomProperties (_hashtable);
+            gameState.Roles[actorNumber] = newRole;
+            UnityEngine.Debug.Log ($"Assign player {actorNumber} to {newRole}");
+
+             _hashtable.Clear ();
+                _hashtable[RoomDataConstants.PlayerRole] = gameState.Roles.Serialize ();
+                photonServer.CurrentRoom.SetCustomProperties (_hashtable);
         }
     }
 
     public static class Extensions
     {
-        public static byte[] Serialize (this Dictionary<PlayerRole, int> value)
+        public static byte[] Serialize (this Dictionary<int, PlayerRole> value)
         {
             var array = new byte[value.Count * 2];
 
@@ -67,14 +81,14 @@ namespace Client
             return array;
         }
 
-        public static Dictionary<PlayerRole, int> DeserializeToPlayerRoles (byte[] array)
+        public static Dictionary<int, PlayerRole> DeserializeToPlayerRoles (byte[] array)
         {
-            var gameState = new Dictionary<PlayerRole, int> ();
+            var gameState = new Dictionary<int, PlayerRole> ();
             for (int i = 0; i < array.Length / 2; i++)
             {
-                var playerRole = (PlayerRole) array[i * 2];
-                var playerNumber = array[i * 2 + 1];
-                gameState[playerRole] = playerNumber;
+                var playerNumber = (int) array[i * 2];
+                var playerRole = (PlayerRole) array[i * 2 + 1];
+                gameState[playerNumber] = playerRole;
             }
 
             return gameState;

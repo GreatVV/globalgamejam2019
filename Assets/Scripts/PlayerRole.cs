@@ -1,11 +1,11 @@
 namespace Client
 {
-    public enum PlayerRole
+    public enum PlayerRole : byte
     {
         None = 0,
-        Fly,
-        Shoot,
-        Defend,
-        Heal
+        Fly = 1,
+        Shoot = 2,
+        Defend = 3,
+        Heal = 4
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using Leopotam.Ecs;
 
 namespace Client
@@ -14,37 +14,31 @@ namespace Client
         private PlayerCache PlayerCache;
         private GameState GameState;
 
-        public void Run()
+        public void Run ()
         {
             if (PhotonServer.CurrentRoom != null && PhotonServer.LocalPlayer.IsMasterClient)
             {
-                _systems.Run();
+                _systems.Run ();
             }
         }
 
-        public void Initialize()
+        public void Initialize ()
         {
-            _systems = new EcsSystems(_world);
+            _systems = new EcsSystems (_world);
 
             _systems
-                .Add(new AssignRoleSystem())
-                .Add(new DeAssignRoleSystem())
-                .Inject(PhotonServer)
-                .Inject(SceneDescription)
-                .Inject(PlayerCache)
-                .Inject(GameState)
-                .Initialize()
-                ;
+                .Add (new AssignRoleSystem ())
+                .Add (new DeAssignRoleSystem ())
+                .Inject (PhotonServer)
+                .Inject (SceneDescription)
+                .Inject (PlayerCache)
+                .Inject (GameState)
+                .Initialize ();
         }
 
-        public void Destroy()
+        public void Destroy ()
         {
-            _systems.Dispose();
+            _systems.Dispose ();
         }
-    }
-
-    public class GameState
-    {
-        public readonly Dictionary<PlayerRole,int> Roles = new Dictionary<PlayerRole, int>();
     }
 }

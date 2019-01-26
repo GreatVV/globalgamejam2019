@@ -31,6 +31,8 @@ namespace Client {
                 .Add(new UpdateShipPositionSystem())
                 .Add(new ShowRolesSystem())
                 .Add(new SyncShipPosition())
+                .Add(new MakeMasterSystem())
+                .Add(new CallForChangeRoleSystem())
                 .Inject(SceneDescription)
                 .Inject(playerCache)
                 .Inject(photonServer)

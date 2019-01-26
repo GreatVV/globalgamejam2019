@@ -12,6 +12,8 @@ namespace Client
         public PhotonServer PhotonServer;
         public PlayerCache PlayerCache;
 
+        private GameState _gameState;
+
         public void Destroy ()
         {
             PhotonServer.OnStateChangeAction -= OnStateChanged;
@@ -67,7 +69,7 @@ namespace Client
 
         private void OnEventAction (EventData obj)
         {
-            UnityEngine.Debug.Log ("Event: " + obj.Code + " " + obj.Parameters.ToStringFull());
+            UnityEngine.Debug.Log ("Event: " + obj.Code + " " + obj.Parameters.ToStringFull ());
 
             switch (obj.Code)
             {
@@ -76,14 +78,39 @@ namespace Client
                     break;
                 case EventCode.Leave:
                     DeletePlayer ((int) obj.Parameters[ParameterCode.ActorNr]);
+                    if (obj.Parameters.ContainsKey (ParameterCode.MasterClientId))
+                    {
+                        var masterClient = (int) obj.Parameters[ParameterCode.MasterClientId];
+                        if (masterClient == PhotonServer.LocalPlayer.ID)
+                        {
+                            var gamePlayer = _world.GetComponent<GamePlayer> (PlayerCache.Entities[masterClient]);
+                            if (!gamePlayer.isMaster)
+                            {
+                                _world.CreateEntityWith<MakeMaster> (out _);
+                                gamePlayer.isMaster = true;
+                            }
+                        }
+                    }
                     break;
                 case EventCode.PropertiesChanged:
-                    if (obj.Parameters.ContainsKey (ParameterCode.TargetActorNr) && (int) obj.Parameters[ParameterCode.TargetActorNr] == 0)
+                    if (obj.Parameters.ContainsKey (ParameterCode.TargetActorNr) && (int) obj.Parameters[ParameterCode.TargetActorNr] == 0 && obj.Parameters.ContainsKey (ParameterCode.Properties))
                     {
                         //todo update global state
-                        var data = obj.Parameters[ParameterCode.Data] as Hashtable;
+                        var data = obj.Parameters[ParameterCode.Properties] as Hashtable;
                         _world.CreateEntityWith<RoomData> (out var roomData);
                         roomData.value = data;
+                    }
+                    break;
+                case GameEventCode.ChangeRole:
+                    {
+                        var actorNumber = (int) obj.Parameters[ParameterCode.ActorNr];
+                        var newRole = (PlayerRole) obj.Parameters[ParameterCode.Data];
+                        var otherPlayer = _gameState.GetPlayerWithRole (newRole);
+                        if (otherPlayer == -1)
+                        {
+                            AssignRoleSystem.SetPlayerToRole (PhotonServer, _gameState, actorNumber, newRole);
+                        }
+
                     }
                     break;
             }
