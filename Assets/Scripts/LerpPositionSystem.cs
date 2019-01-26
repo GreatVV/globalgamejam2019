@@ -19,14 +19,14 @@ namespace Client
                 var distance = Vector3.Distance (transformRef.value.position, position.value);
                 if (transformRef.value.position != position.value)
                 {
-                    if (distance < teleportDistance)
-                    {
-                        transformRef.value.position = Vector3.Lerp (transformRef.value.position, position.value, dt);
-                    }
-                    else
-                    {
+                    // if (distance < teleportDistance)
+                    // {
+                    //     transformRef.value.position = Vector3.MoveTowards(transformRef.value.position, position.value, dt * distance / 5);
+                    // }
+                    // else
+                    // {
                         transformRef.value.position = position.value;
-                    }
+                    // }
                 }
             }
         }

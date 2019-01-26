@@ -8,6 +8,8 @@ namespace Client
     {
         private EcsWorld _world;
         private GameConfig _gameConfig;
+
+        private GameState _gameState;
         protected override EcsReactiveType GetReactiveType ()
         {
             return EcsReactiveType.OnAdded;
@@ -22,13 +24,17 @@ namespace Client
                 foreach (var asteroidDesc in spawnAsteroids)
                 {
                     var asteroidEntity = _world.CreateEntity ();
-                    _world.AddComponent<Asteroid> (asteroidEntity).Id = asteroidDesc.Id;
+                    Asteroid asteroid = _world.AddComponent<Asteroid> (asteroidEntity);
+                    asteroid.Id = asteroidDesc.Id;
                     _world.AddComponent<Position> (asteroidEntity).value = asteroidDesc.Position;
                     _world.AddComponent<Rotation> (asteroidEntity).value = asteroidDesc.Rotation;
                     _world.AddComponent<Speed> (asteroidEntity).value = asteroidDesc.Speed;
                     var index = asteroidDesc.Index;
+                    asteroid.Index = index;
                     var instance = UnityEngine.Object.Instantiate (_gameConfig.AsteroidsPrefabs[index], asteroidDesc.Position, asteroidDesc.Rotation);
                     _world.AddComponent<TransformRef> (asteroidEntity).value = instance.transform;
+
+                    _gameState.Asteroids[asteroidDesc.Id] = asteroidEntity;
                 }
             }
         }

@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using Leopotam.Ecs;
 
 namespace Client
 {
     [EcsOneFrame]
-    internal class SpawnAsteroids : IEcsAutoResetComponent
+    public class KillAsteroids : IEcsAutoResetComponent
     {
-        public AsteroidDesc[] value;
+        public int[] value;
 
         public void Reset ()
         {

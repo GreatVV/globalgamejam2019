@@ -1,4 +1,3 @@
-using System;
 using Leopotam.Ecs;
 
 namespace Client
@@ -30,8 +29,10 @@ namespace Client
             _systems
                 .Add (new AssignRoleSystem ())
                 .Add (new DeAssignRoleSystem ())
-                .Add( new SpawnAsteroidSystem())
-               .Inject(GameConfig)
+                .Add (new ServerSpawnAsteroidSystem ())
+                .Add (new DumpAsteroidsToPropertiesSystem ())
+                .Add (new DestroyAsteroidsOutOfRangeSystem ())
+                .Inject (GameConfig)
                 .Inject (SceneDescription)
                 .Inject (PlayerCache)
                 .Inject (PhotonServer)

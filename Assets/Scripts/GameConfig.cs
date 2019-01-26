@@ -14,5 +14,7 @@ namespace Client
         public float MaxAsteroidSpeed = 10;
         public float MinAsteroidSpeed = 30;
         public GameObject[] AsteroidsPrefabs;
+        public float AsteroidDumpInterval = 15;
+        public float DeathDistance = 200;
     }
 }

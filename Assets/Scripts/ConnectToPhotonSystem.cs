@@ -64,6 +64,11 @@ namespace Client
                                 data[RoomDataConstants.Health] = _gameConfig.DefaultHealth;
                             }
 
+                            if (data.ContainsKey (RoomDataConstants.Asteroids))
+                            {
+                                var newAsteroids = data[RoomDataConstants.Asteroids] as AsteroidDesc[];
+                                _world.CreateEntityWith<SpawnAsteroids> (out var spawnAsteroids);
+                            }
                         }
                     }
                     else
@@ -133,10 +138,17 @@ namespace Client
                     break;
                 case GameEventCode.SpawnAsteroids:
                     {
-                        var newAsteroids = obj.Parameters[ParameterCode.Data] as List<AsteroidDesc>;
+                        var newAsteroids = obj.Parameters[ParameterCode.Data] as AsteroidDesc[];
                         _world.CreateEntityWith<SpawnAsteroids> (out var spawnAsteroids);
                         spawnAsteroids.value = newAsteroids;
                     }
+                    break;
+                case GameEventCode.KillAsteroids:
+                {
+                        var newAsteroids = obj.Parameters[ParameterCode.Data] as int[];
+                        _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
+                        killAsteroids.value = newAsteroids;
+                }
                     break;
             }
         }

@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   DefaultHealth: 100
-  AsteroidsAmount: 3
+  GenerationInterval: 10
+  MaxAsteroidsPerGeneration: 1
+  MinAsteroidPerGeneration: 5
+  MaxGenerationRadius: 30
+  MinGenerationRadius: 100
+  MaxAsteroidSpeed: 10
+  MinAsteroidSpeed: 30
+  AsteroidsPrefabs:
+  - {fileID: 7351712347807621191, guid: d3464e4f389fd4a42b8f614775ec416b, type: 3}
+  AsteroidDumpInterval: 15
+  DeathDistance: 200

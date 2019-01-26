@@ -1,3 +1,5 @@
+using ExitGames.Client.Photon;
+
 namespace Client
 {
     public static class RoomDataConstants
@@ -7,5 +9,6 @@ namespace Client
         public const string PlayerRole = "PlayerRole";
         public const string Health = "Health";
         public const string LastGeneratedId = "LastGeneratedId";
+        public const string Asteroids = "Asteroids";
     }
 }

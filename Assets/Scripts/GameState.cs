@@ -8,6 +8,7 @@ namespace Client
         public int ShipEntity;        
 
         public readonly Dictionary<int, PlayerRole> Roles = new Dictionary<int, PlayerRole> ();
+        public readonly Dictionary<int, int> Asteroids = new Dictionary<int, int> ();
         public float lastGenerationTime;
 
         internal void UpdateRoles (Dictionary<int, PlayerRole> roles)

@@ -7,6 +7,7 @@ namespace Client
     {
         [Header ("Ship")]
         public Transform Ship;
+        public Rigidbody ShipRigidbody;
         public float Speed = 10;
         public float RotationSpeed = 5;
 
@@ -19,6 +20,7 @@ namespace Client
             world.AddComponent<TransformRef> (ship).value = Ship;
             world.AddComponent<Speed> (ship).value = Speed;
             world.AddComponent<RotationSpeed> (ship).value = RotationSpeed;
+            world.AddComponent<RigidbodyRef> (ship).value = ShipRigidbody;
             return ship;
         }
     }

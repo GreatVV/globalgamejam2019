@@ -2,6 +2,7 @@ namespace Client
 {
     public class Asteroid
     {
-        public long Id;
+        public int Id;
+        public int Index;
     }
 }

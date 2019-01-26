@@ -4,7 +4,7 @@ namespace Client
 {
     internal struct AsteroidDesc
     {
-        public long Id;
+        public int Id;
         internal Vector3 Position;
         internal Quaternion Rotation;
         internal float Speed;
