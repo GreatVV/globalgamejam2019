@@ -39,36 +39,27 @@ namespace Client
         private void DoControl ()
         {
             _hashtable.Clear ();
-            var vertical = Input.GetAxis ("Vertical");
-            if (vertical != 0)
-            {
-                var dt = UnityEngine.Time.deltaTime;
-                var speed = _world.GetComponent<Speed> (_gameState.ShipEntity).value;
-                var transform = _world.GetComponent<TransformRef> (_gameState.ShipEntity).value;
 
-                var newPosition = transform.position + transform.forward * dt * speed * vertical;
-                _hashtable[RoomDataConstants.ShipPosition] = newPosition;
+            var transform = _world.GetComponent<TransformRef>(_gameState.ShipEntity).value;
+            var rigidBody = transform.gameObject.GetComponent<Rigidbody>();
 
-                transform.position = newPosition;
-            }
+            float TurnSpeed = 0.3f;
+            float ForwardSpeed = 30.0f;
 
-            var horizontal = Input.GetAxis ("Horizontal");
-            if (horizontal != 0)
-            {
-                var dt = UnityEngine.Time.deltaTime;
-                var rotationSpeed = _world.GetComponent<RotationSpeed> (_gameState.ShipEntity).value;
-                var transform = _world.GetComponent<TransformRef> (_gameState.ShipEntity).value;
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 centeredMousePos = mousePos - new Vector2(Screen.width, Screen.height) / 2.0f;
+            Debug.Log(centeredMousePos);
 
-                var newRotation = transform.rotation * Quaternion.AngleAxis (dt * rotationSpeed * horizontal, Vector3.up);
+            float pitch = centeredMousePos.y * -1.0f;
+            float yaw = centeredMousePos.x;
+            float roll = 0.0f;
 
-                _hashtable[RoomDataConstants.ShipRotation] = newRotation;
-                transform.rotation = newRotation;
-            }
+            rigidBody.velocity = transform.forward * ForwardSpeed;
 
-            if (_hashtable.Count > 0)
-            {
-                _photonServer.CurrentRoom.SetCustomProperties (_hashtable);
-            }
+            rigidBody.AddRelativeTorque(
+                pitch * TurnSpeed * Time.deltaTime,
+                yaw * TurnSpeed * Time.deltaTime,
+                roll);
         }
     }
 }
