@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using ExitGames.Client.Photon.LoadBalancing;
 using Leopotam.Ecs;
@@ -14,6 +15,8 @@ namespace Client
         public PlayerCache PlayerCache;
 
         private GameState _gameState;
+
+        private GameConfig _gameConfig;
 
         public void Destroy ()
         {
@@ -55,6 +58,12 @@ namespace Client
                             {
                                 CreatePlayer (player.Key);
                             }
+
+                            if (PhotonServer.LocalPlayer.IsMasterClient && !data.ContainsKey (RoomDataConstants.Health))
+                            {
+                                data[RoomDataConstants.Health] = _gameConfig.DefaultHealth;
+                            }
+
                         }
                     }
                     else
@@ -120,6 +129,13 @@ namespace Client
                             AssignRoleSystem.SetPlayerToRole (PhotonServer, _gameState, actorNumber, newRole);
                         }
 
+                    }
+                    break;
+                case GameEventCode.SpawnAsteroids:
+                    {
+                        var newAsteroids = obj.Parameters[ParameterCode.Data] as List<AsteroidDesc>;
+                        _world.CreateEntityWith<SpawnAsteroids> (out var spawnAsteroids);
+                        spawnAsteroids.value = newAsteroids;
                     }
                     break;
             }

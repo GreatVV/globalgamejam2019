@@ -11,6 +11,8 @@ namespace Client
 
         public SceneDescription SceneDescription;
 
+        public GameConfig GameConfig;
+
         void OnEnable ()
         {
             _world = new EcsWorld ();
@@ -37,8 +39,11 @@ namespace Client
                 .Add (new MakeMasterSystem ())
                 .Add (new CallForChangeRoleSystem ())
                 .Add (new ControlShipSystem ())
-                .Add( new LerpPositionSystem())
-                .Add( new LerpRotationSystem())
+                .Add (new UpdateHealthSystem ())
+                .Add (new SpawnAsteroidsSystem ())
+                .Add (new LerpPositionSystem ())
+                .Add (new LerpRotationSystem ())
+                .Inject (GameConfig)
                 .Inject (SceneDescription)
                 .Inject (playerCache)
                 .Inject (photonServer)

@@ -13,6 +13,7 @@ namespace Client
         private SceneDescription SceneDescription;
         private PlayerCache PlayerCache;
         private GameState GameState;
+        private GameConfig GameConfig;
 
         public void Run ()
         {
@@ -29,9 +30,11 @@ namespace Client
             _systems
                 .Add (new AssignRoleSystem ())
                 .Add (new DeAssignRoleSystem ())
-                .Inject (PhotonServer)
+                .Add( new SpawnAsteroidSystem())
+               .Inject(GameConfig)
                 .Inject (SceneDescription)
                 .Inject (PlayerCache)
+                .Inject (PhotonServer)
                 .Inject (GameState)
                 .Initialize ();
         }
