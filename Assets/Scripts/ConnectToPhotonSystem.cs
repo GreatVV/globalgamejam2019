@@ -22,7 +22,6 @@ namespace Client
 
         public void Initialize()
         {
-            PhotonServer = new PhotonServer();
             PhotonServer.CallConnect();
             PhotonServer.OnStateChangeAction += OnStateChanged;
             PhotonServer.OnEventAction += OnEventAction;
@@ -71,32 +70,38 @@ namespace Client
                     break;
                 case EventCode.Leave:
                     DeletePlayer((int)obj.Parameters[ParameterCode.ActorNr]);
-                    break;                    
+                    break;
+                case EventCode.PropertiesChanged:
+                    if (obj.Parameters.ContainsKey(ParameterCode.TargetActorNr) && (int)obj.Parameters[ParameterCode.TargetActorNr] == 0)
+                    {
+                        //todo update global state
+                    }
+                    break;
             }
         }
 
-        private void DeletePlayer(int sender)
+        private void DeletePlayer(int actorNumber)
         {
-            if (PlayerCache.Entities.TryGetValue(sender, out var value))
+            if (PlayerCache.Entities.TryGetValue(actorNumber, out var value))
             {
                 _world.AddComponent<Leave>(value);
                 _world.MarkComponentAsUpdated<Leave>(value);
             }
         }
 
-        private void CreatePlayer(int sender)
+        private void CreatePlayer(int actorNumber)
         {
-            if (sender < 0)
+            if (actorNumber < 0)
             {
                 return;
             }
 
-            if (!PlayerCache.Entities.ContainsKey(sender))
+            if (!PlayerCache.Entities.ContainsKey(actorNumber))
             {
                 var player = _world.CreateEntity();
-                _world.AddComponent<GamePlayer>(player).number = sender;
-                
-                PlayerCache.Entities[sender] = player;
+                _world.AddComponent<GamePlayer>(player).number = actorNumber;
+
+                PlayerCache.Entities[actorNumber] = player;
             }
         }
 
@@ -141,11 +146,11 @@ namespace Client
                 case ClientState.ConnectingToNameServer:
                     break;
                 case ClientState.ConnectedToNameServer:
-                    
+
                     break;
                 case ClientState.DisconnectingFromNameServer:
                     break;
-            }            
+            }
         }
 
         public void Run()

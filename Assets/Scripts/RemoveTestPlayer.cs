@@ -13,10 +13,8 @@ namespace Client
         {
             for (var i = 0; i < ReactedEntitiesCount; i++)
             {
-                var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
                 var entity = ReactedEntities[i];
-                TransformRef transformRef = _world.GetComponent<TransformRef>(entity);
+                var transformRef = _world.GetComponent<TransformRef>(entity);
                 Object.Destroy(transformRef.value.gameObject);
                 _world.RemoveEntity(entity);
             }

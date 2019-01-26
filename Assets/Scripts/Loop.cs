@@ -6,7 +6,6 @@ namespace Client {
         EcsWorld _world;
         EcsSystems _systems;
 
-        public PlayerCache PlayerCache;
 
         void OnEnable () {
             _world = new EcsWorld ();
@@ -15,15 +14,19 @@ namespace Client {
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
-            PlayerCache = new PlayerCache();
+            var playerCache = new PlayerCache();
+            var photonServer = new PhotonServer();
 
             _systems
                 // Register your systems here, for example:
                 .Add (new ConnectToPhotonSystem())
                 .Add(new CreateTestPlayer())
                 .Add(new RemoveTestPlayer())
+                .Add(new ServerSystem())
+                .Add(new LocalPlayerSystem())
                 // .Add (new TestSystem2())
-                .Inject(PlayerCache)                
+                .Inject(playerCache)
+                .Inject(photonServer)
 .Initialize ();
         }
 
