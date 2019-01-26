@@ -1,10 +1,14 @@
 using Leopotam.Ecs;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Client {
     sealed class Loop : MonoBehaviour {
         EcsWorld _world;
         EcsSystems _systems;
+
+        public SceneDescription SceneDescription;
 
 
         void OnEnable () {
@@ -17,6 +21,8 @@ namespace Client {
             var playerCache = new PlayerCache();
             var photonServer = new PhotonServer();
 
+            SceneDescription.Init(_world);
+
             _systems
                 // Register your systems here, for example:
                 .Add (new ConnectToPhotonSystem())
@@ -24,7 +30,8 @@ namespace Client {
                 .Add(new RemoveTestPlayer())
                 .Add(new ServerSystem())
                 .Add(new LocalPlayerSystem())
-                // .Add (new TestSystem2())
+                .Add(new SyncShipPosition())
+                .Inject(SceneDescription)
                 .Inject(playerCache)
                 .Inject(photonServer)
 .Initialize ();

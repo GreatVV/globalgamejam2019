@@ -75,6 +75,9 @@ namespace Client
                     if (obj.Parameters.ContainsKey(ParameterCode.TargetActorNr) && (int)obj.Parameters[ParameterCode.TargetActorNr] == 0)
                     {
                         //todo update global state
+                        var data = obj.Parameters[ParameterCode.Data] as Hashtable;
+                        _world.CreateEntityWith<RoomData>(out var roomData);
+                        roomData.value = data;
                     }
                     break;
             }
