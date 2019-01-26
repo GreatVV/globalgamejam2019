@@ -32,6 +32,7 @@ namespace Client
                 .Add (new ServerSpawnAsteroidSystem ())
                 .Add (new DumpAsteroidsToPropertiesSystem ())
                 .Add (new DestroyAsteroidsOutOfRangeSystem ())
+                .Add(new AnalyzeAsteroidCollisionSystem())
                 .Inject (GameConfig)
                 .Inject (SceneDescription)
                 .Inject (PlayerCache)

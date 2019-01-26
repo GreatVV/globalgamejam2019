@@ -144,11 +144,19 @@ namespace Client
                     }
                     break;
                 case GameEventCode.KillAsteroids:
-                {
-                        var newAsteroids = obj.Parameters[ParameterCode.Data] as int[];
+                    {
+                        var asteroidIds = obj.Parameters[ParameterCode.Data] as int[];
                         _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
-                        killAsteroids.value = newAsteroids;
-                }
+                        killAsteroids.value = asteroidIds;
+                    }
+                    break;
+                case GameEventCode.DamageByAsteroids:
+                    {
+                        var asteroidIds = obj.Parameters[ParameterCode.Data] as int[];
+                        _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
+                        killAsteroids.value = asteroidIds;
+                        killAsteroids.WithEffect = true;
+                    }
                     break;
             }
         }

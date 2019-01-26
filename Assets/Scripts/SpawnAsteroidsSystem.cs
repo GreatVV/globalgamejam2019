@@ -33,7 +33,7 @@ namespace Client
                     asteroid.Index = index;
                     var instance = UnityEngine.Object.Instantiate (_gameConfig.AsteroidsPrefabs[index], asteroidDesc.Position, asteroidDesc.Rotation);
                     _world.AddComponent<TransformRef> (asteroidEntity).value = instance.transform;
-
+                    instance.Entity = asteroidEntity;
                     _gameState.Asteroids[asteroidDesc.Id] = asteroidEntity;
                 }
             }

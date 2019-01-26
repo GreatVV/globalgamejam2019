@@ -31,7 +31,7 @@ namespace Client
                 }
                 else
                 {
-                    shipPosition.position = _sceneDescription.Ship.position;
+                    shipPosition.position = _sceneDescription.Ship.transform.position;
                 }
 
                 if (roomData.ContainsKey (RoomDataConstants.ShipRotation))
@@ -41,7 +41,7 @@ namespace Client
                 }
                 else
                 {
-                    shipPosition.rotation = _sceneDescription.Ship.rotation;
+                    shipPosition.rotation = _sceneDescription.Ship.transform.rotation;
                 }
             }
         }
