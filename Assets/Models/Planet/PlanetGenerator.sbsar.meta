@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: 48ab73700d7d4314ba867b762e0a73b2
+ScriptedImporter:
+  fileIDToRecycleName:
+    2100000: AFFplanoid
+    2800000: AFFplanoid - diffuse
+    2800002: AFFplanoid - height
+    2800004: AFFplanoid - emissive
+    2800006: AFFplanoid - metallic
+    2800008: AFFplanoid - normal
+    11400000: sbsar
+    11400002: graph0
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 17
+  mGraphInstanceData:
+  - graphLabel: AFFplanoid
+    prototypeName: AFFplanoid
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://AFFplanoid\" label=\"\" >\n  <presetinput
+      identifier=\"$outputsize\" uid=\"1554765540\" type=\"8\" value=\"12,12\" />\n
+      \ <presetinput identifier=\"$randomseed\" uid=\"198820022\" type=\"4\" value=\"3277\"
+      />\n  <presetinput identifier=\"colors_liquid_color_1\" uid=\"754884540\" type=\"3\"
+      value=\"0,0.254717,0.820755,1\" />\n  <presetinput identifier=\"colors_ice_color_2\"
+      uid=\"754956227\" type=\"3\" value=\"1,1,1,1\" />\n  <presetinput identifier=\"planet_age\"
+      uid=\"754717896\" type=\"0\" value=\"0.49\" />\n  <presetinput identifier=\"atmosphere_bias\"
+      uid=\"754802841\" type=\"0\" value=\"0.504\" />\n  <presetinput identifier=\"noisetype\"
+      uid=\"754794969\" type=\"4\" value=\"8\" />\n  <presetinput identifier=\"Intensity\"
+      uid=\"754757818\" type=\"0\" value=\"41.2\" />\n  <presetinput identifier=\"swirl\"
+      uid=\"754809927\" type=\"0\" value=\"-82\" />\n  <presetinput identifier=\"atmo_turbulence\"
+      uid=\"754895418\" type=\"0\" value=\"11.8\" />\n  <presetinput identifier=\"spin_intensity\"
+      uid=\"754874573\" type=\"0\" value=\"0.2\" />\n  <presetinput identifier=\"deeptweak_atmo_hurricane_offset\"
+      uid=\"754240531\" type=\"1\" value=\"-0.5,0.07\" />\n  <presetinput identifier=\"deeptweak_normal_intensity\"
+      uid=\"754344421\" type=\"0\" value=\"0.9\" />\n  <presetinput identifier=\"buildup\"
+      uid=\"754474807\" type=\"0\" value=\"0.775\" />\n  <presetinput identifier=\"city_size\"
+      uid=\"754595110\" type=\"0\" value=\"431\" />\n  <presetinput identifier=\"cities_city_lights_bias\"
+      uid=\"754660669\" type=\"0\" value=\"0.215\" />\n  <presetinput identifier=\"cities_city_lights_hue\"
+      uid=\"754650612\" type=\"0\" value=\"0.966\" />\n  <presetinput identifier=\"cities_Saturation\"
+      uid=\"754204330\" type=\"0\" value=\"0.995\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: diffuse,height,emissive,metallic,normal
+    texturePackingList:
+    - outputName: diffuse
+      alphaSource: opacity
+    - outputName: height
+      alphaSource: height
+    - outputName: emissive
+      alphaSource: emissive
+    - outputName: specular
+      alphaSource: specular
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: normal
+      alphaSource: normal
+    - outputName: opacity
+      alphaSource: opacity
+    textureParameters:
+    - textureName: AFFplanoid - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - emissive
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - specular
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: AFFplanoid - opacity
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: diffuse
+      bLinear: 0
+    - outputName: height
+      bLinear: 1
+    - outputName: emissive
+      bLinear: 0
+    - outputName: specular
+      bLinear: 0
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: normal
+      bLinear: 1
+    - outputName: opacity
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      textureWidth: 4096
+      textureHeight: 4096
+      textureFormat: 0
+      bGenerateOnLoad: 0
+    material: {fileID: 2100000, guid: 48ab73700d7d4314ba867b762e0a73b2, type: 3}
+    generatedTextures: []
