@@ -25,13 +25,8 @@ namespace Client
                      var position = (Vector3)roomData[RoomDataConstants.ShipPosition];
                      _world.CreateEntityWith<ShipPosition>(out var shipPosition);
                      shipPosition.value = position;
-                }
+                
             }
         }
-    }
-
-    public static class RoomDataConstants
-    {
-        public const  int ShipPosition = 1;
     }
 }
