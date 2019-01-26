@@ -9,24 +9,39 @@ namespace Client
     {
         private EcsWorld _world;
         private PhotonServer PhotonServer;
-        protected override EcsReactiveType GetReactiveType()
+
+        private SceneDescription _sceneDescription;
+        protected override EcsReactiveType GetReactiveType ()
         {
             return EcsReactiveType.OnAdded;
         }
 
-        protected override void RunReactive()
+        protected override void RunReactive ()
         {
             for (int i = 0; i < ReactedEntitiesCount; i++)
             {
                 var entity = ReactedEntities[i];
-                var roomData = _world.GetComponent<RoomData>(entity).value;
+                var roomData = _world.GetComponent<RoomData> (entity).value;
+                _world.CreateEntityWith<ShipPosition> (out var shipPosition);
 
-                if (roomData.ContainsKey(RoomDataConstants.ShipPosition))
+                if (roomData.ContainsKey (RoomDataConstants.ShipPosition))
                 {
-
                     var position = (Vector3) roomData[RoomDataConstants.ShipPosition];
-                    _world.CreateEntityWith<ShipPosition>(out var shipPosition);
-                    shipPosition.value = position;
+                    shipPosition.position = position;
+                }
+                else
+                {
+                    shipPosition.position = _sceneDescription.Ship.position;
+                }
+
+                if (roomData.ContainsKey (RoomDataConstants.ShipRotation))
+                {
+                    var rotation = (Quaternion) roomData[RoomDataConstants.ShipRotation];
+                    shipPosition.rotation = rotation;
+                }
+                else
+                {
+                    shipPosition.rotation = _sceneDescription.Ship.rotation;
                 }
             }
         }

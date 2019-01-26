@@ -2,6 +2,7 @@
 using ExitGames.Client.Photon;
 using ExitGames.Client.Photon.LoadBalancing;
 using Leopotam.Ecs;
+using Photon.Pun;
 
 namespace Client
 {
@@ -24,6 +25,7 @@ namespace Client
 
         public void Initialize ()
         {
+            CustomTypes.Register ();
             PhotonServer.CallConnect ();
             PhotonServer.OnStateChangeAction += OnStateChanged;
             PhotonServer.OnEventAction += OnEventAction;
@@ -32,7 +34,7 @@ namespace Client
 
         private void OnOperationResponse (OperationResponse obj)
         {
-            UnityEngine.Debug.Log ("Response: " + obj.OperationCode + " : " + obj.ReturnCode);
+            UnityEngine.Debug.Log ("Response: " + obj.OperationCode + " : " + obj.ReturnCode + " : " + obj.Parameters.ToStringFull ());
 
             switch (obj.OperationCode)
             {
@@ -44,6 +46,11 @@ namespace Client
                         //CreatePlayer(PhotonServer.LocalPlayer.ID);
                         if (PhotonServer.CurrentRoom != null)
                         {
+                            var data = PhotonServer.CurrentRoom.CustomProperties;
+                            UnityEngine.Debug.Log ($"Set Properties on connect: {data.ToStringFull()}");
+                            _world.CreateEntityWith<RoomData> (out var roomData);
+                            roomData.value = data;
+
                             foreach (var player in PhotonServer.CurrentRoom.Players)
                             {
                                 CreatePlayer (player.Key);
@@ -59,10 +66,12 @@ namespace Client
                     }
                     break;
                 case OperationCode.SetProperties:
-                    var data = PhotonServer.CurrentRoom.CustomProperties;
-                    UnityEngine.Debug.Log ($"Set Properties: {data.ToStringFull()}");
-                    _world.CreateEntityWith<RoomData> (out var roomData);
-                    roomData.value = data;
+                    {
+                        var data = PhotonServer.CurrentRoom.CustomProperties;
+                        UnityEngine.Debug.Log ($"Set Properties: {data.ToStringFull()}");
+                        _world.CreateEntityWith<RoomData> (out var roomData);
+                        roomData.value = data;
+                    }
                     break;
             }
         }

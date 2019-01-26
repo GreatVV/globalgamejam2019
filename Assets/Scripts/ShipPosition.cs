@@ -6,6 +6,7 @@ namespace Client
     [EcsOneFrame]
     public class ShipPosition
     {
-        public Vector3 value;
+        public Vector3 position;
+        public Quaternion rotation;
     }
 }

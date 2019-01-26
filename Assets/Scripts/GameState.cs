@@ -5,6 +5,8 @@ namespace Client
 {
     public class GameState
     {
+        public int ShipEntity;
+
         public readonly Dictionary<int, PlayerRole> Roles = new Dictionary<int, PlayerRole> ();
 
         internal void UpdateRoles (Dictionary<int, PlayerRole> roles)

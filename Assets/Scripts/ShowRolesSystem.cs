@@ -15,6 +15,8 @@ namespace Client
         private PhotonServer _photonServer;
         private readonly StringBuilder stringBuilder = new StringBuilder ();
 
+        private PlayerCache _playerCache;
+
         private GameState _gameState;
 
         protected override EcsReactiveType GetReactiveType ()
@@ -33,6 +35,24 @@ namespace Client
                     var roles = Extensions.DeserializeToPlayerRoles (roomData.value[RoomDataConstants.PlayerRole] as byte[]);
                     _gameState.UpdateRoles (roles);
 
+                    foreach (var playerRole in roles)
+                    {
+                        var actorNumber = playerRole.Key;
+                        var role = playerRole.Value;
+                        if (_playerCache.Entities.TryGetValue (actorNumber, out var playerEntity))
+                        {
+                            var roleComponent = _world.EnsureComponent<Role> (playerEntity, out var isNew);
+                            if (!isNew)
+                            {
+                                if (roleComponent.value != role)
+                                {
+                                    _world.MarkComponentAsUpdated<Role> (playerEntity);
+                                }
+                            }
+                            roleComponent.value = role;
+                        }
+                    }
+
                     stringBuilder.Clear ();
                     stringBuilder.AppendLine ("Roles");
 
@@ -45,6 +65,7 @@ namespace Client
                         stringBuilder.Append ($"{role} = {( playerWithRole == -1 ? "-" : playerWithRole.ToString() )}");
                         if (playerWithRole == _photonServer.LocalPlayer.ID)
                         {
+
                             stringBuilder.Append ("(me)");
                         }
 

@@ -5,14 +5,21 @@ namespace Client
 {
     public class SceneDescription : MonoBehaviour
     {
+        [Header ("Ship")]
         public Transform Ship;
+        public float Speed = 10;
+        public float RotationSpeed = 5;
+
         public UI UI;
 
-        public void Init(EcsWorld world)
+        public int CreateShip (EcsWorld world)
         {
-            var ship = world.CreateEntity();
-            world.AddComponent<Ship>(ship);
-            world.AddComponent<TransformRef>(ship).value = Ship;
+            var ship = world.CreateEntity ();
+            world.AddComponent<Ship> (ship);
+            world.AddComponent<TransformRef> (ship).value = Ship;
+            world.AddComponent<Speed> (ship).value = Speed;
+            world.AddComponent<RotationSpeed> (ship).value = RotationSpeed;
+            return ship;
         }
     }
 }
