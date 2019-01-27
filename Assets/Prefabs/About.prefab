@@ -197,9 +197,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "Elves vs Dwarfs In Da Space Epic Clash Battle Royal\n\nGame created for
     Global Game Jam 2019 by\n<size=130%>\n<i>Sasha Popov\nMargarita Popova\nVladimir
-    Rotterdamsky</i>\n</size>\n\nMoscow 2019\nJam Location: IT HUB College\n\nDevelopment
-    was streamed on twitch:\n<b><u> <link=\"twitch\"> twitch.tv/greatvv </link></u>
-    </b>\nFollow us on twitter: \n<b><u> <link=\"twitter\">twitter.com/StudiosZlodey</link>
+    Rotterdamsky\nAlexey Kurilovich</i>\n</size>\n\nMoscow 2019\nJam Location: IT
+    HUB College\n\nDevelopment was streamed on twitch:\n<b><u> <link=\"twitch\"> twitch.tv/greatvv
+    </link></u> </b>\nFollow us on twitter: \n<b><u> <link=\"twitter\">twitter.com/StudiosZlodey</link>
     </u> </b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -277,11 +277,11 @@ MonoBehaviour:
     lineCount: 16
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -452,7 +452,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

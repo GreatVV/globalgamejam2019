@@ -27,6 +27,11 @@ namespace Client
             _positions.Clear ();
             var rect = new Rect (0, 0, 1, 1);
             var camera = _sceneDescription.GameCamera;
+            if (!camera)
+            {
+                return;
+            }
+
             foreach (var asteroid in _gameState.Asteroids)
             {
                 var entity = asteroid.Value;
