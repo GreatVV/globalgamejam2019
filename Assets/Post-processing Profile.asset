@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Post-processing Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114679256164657170}
-  - {fileID: 114783071059248702}
---- !u!114 &114679256164657170
+  - {fileID: 114598195660609356}
+  - {fileID: 114803266734888690}
+--- !u!114 &114598195660609356
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,28 +33,28 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 6.78
+    value: 27.79
   threshold:
     overrideState: 1
-    value: 0.82
+    value: 1.31
   softKnee:
-    overrideState: 1
+    overrideState: 0
     value: 0.5
   clamp:
-    overrideState: 1
+    overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 7
+    value: 6.68
   anamorphicRatio:
-    overrideState: 1
+    overrideState: 0
     value: 0
   color:
-    overrideState: 1
+    overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0
   dirtTexture:
     overrideState: 0
     value: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
---- !u!114 &114783071059248702
+--- !u!114 &114803266734888690
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -83,7 +83,7 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 1
+    overrideState: 0
     value: 0
   fastMode:
     overrideState: 0
