@@ -90,8 +90,6 @@ namespace Client
         void Update ()
         {
             _systems.Run ();
-            // Optional: One-frame components cleanup.
-            _world.RemoveOneFrameComponents ();
         }
 
         private void FixedUpdate ()
@@ -102,6 +100,7 @@ namespace Client
         private void LateUpdate ()
         {
             _lateUpdateSystems.Run ();
+            _world.RemoveOneFrameComponents ();
         }
 
         void OnDisable ()

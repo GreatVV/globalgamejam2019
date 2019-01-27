@@ -21,7 +21,7 @@ namespace Client
             {
                 var entity = ReactedEntities[i];
                 var spawnAsteroids = _world.GetComponent<SpawnAsteroids> (entity);
-                if (spawnAsteroids != null)
+                if (spawnAsteroids != null && spawnAsteroids.value != null)
                 {
                     foreach (var asteroidDesc in spawnAsteroids.value)
                     {

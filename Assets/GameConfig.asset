@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 6796782537111357322, guid: d3464e4f389fd4a42b8f614775ec416b, type: 3}
   AsteroidDumpInterval: 15
   DeathDistance: 500
-  DamageFromAsteroid: 10
+  DamageFromAsteroid: 35
   AsteroidDeathEffect: {fileID: 5462274990457412601, guid: 54d3ebceb2b1af848b2bd767ee30d0a8,
     type: 3}
   xSpeed: 120
