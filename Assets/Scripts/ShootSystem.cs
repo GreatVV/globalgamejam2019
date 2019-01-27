@@ -28,6 +28,8 @@ namespace Client
                     var asteroid = _world.GetComponent<Asteroid> (asteroidView.Entity);
                     _photonServer.OpRaiseEvent (GameEventCode.ShootAsteroid, asteroid.Id, true, ServerSpawnAsteroidSystem.All);
                 }
+            } else {
+                _photonServer.OpRaiseEvent (GameEventCode.ShootAsteroid, -1, true, ServerSpawnAsteroidSystem.All);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Client
     {
         public Rigidbody Rigidbody;
 
-        public Transform[] Cannons;
+        public CannonView[] Cannons;
 
         void OnValidate ()
         {

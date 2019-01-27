@@ -4,4 +4,8 @@ namespace Client
     {
         public PlayerRole value;
     }
+
+    public class Local {
+        
+    }
 }

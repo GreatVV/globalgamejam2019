@@ -62,7 +62,9 @@ namespace Client
 
                             if (PhotonServer.LocalPlayer.IsMasterClient && !data.ContainsKey (RoomDataConstants.Health))
                             {
-                                data[RoomDataConstants.Health] = _gameConfig.DefaultHealth;
+                                var hashtable = new Hashtable ();
+                                hashtable[RoomDataConstants.Health] = _gameConfig.DefaultHealth;
+                                PhotonServer.CurrentRoom.SetCustomProperties (hashtable);
                             }
 
                             if (data.ContainsKey (RoomDataConstants.Asteroids))
@@ -162,9 +164,15 @@ namespace Client
                 case GameEventCode.ShootAsteroid:
                     {
                         var asteroidId = (int) obj.Parameters[ParameterCode.Data];
-                        _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
-                        killAsteroids.value = new [] { asteroidId };
-                        killAsteroids.WithEffect = true;
+                        if (asteroidId != -1)
+                        {
+                            _world.CreateEntityWith<KillAsteroids> (out var killAsteroids);
+                            killAsteroids.value = new [] { asteroidId };
+                            killAsteroids.WithEffect = true;
+                        }
+
+                        _world.CreateEntityWith<ShootRay> (out var shootRay);
+                        shootRay.AsteroidTarget = asteroidId;
                     }
                     break;
                 case GameEventCode.ChangeShootCamera:
@@ -200,7 +208,13 @@ namespace Client
                 _world.AddComponent<GamePlayer> (player).number = actorNumber;
 
                 PlayerCache.Entities[actorNumber] = player;
+
+                if (PhotonServer.LocalPlayer.ID == actorNumber)
+                {
+                    _world.AddComponent<Local> (player);
+                }
             }
+
         }
 
         private void OnStateChanged (ClientState state)

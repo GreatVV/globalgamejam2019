@@ -13,6 +13,11 @@ namespace Client
             for (int i = 0; i < ReactedEntitiesCount; i++)
             {
                 var entity = ReactedEntities[i];
+                var local = _world.GetComponent<Local> (entity);
+                if (local == null)
+                {
+                    continue;
+                }
 
                 var role = _world.GetComponent<Role> (entity).value;
                 switch (role)

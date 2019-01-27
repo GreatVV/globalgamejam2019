@@ -55,7 +55,7 @@ namespace Client
 
             var camera = _sceneDescription.GameCamera;
             var ray = camera.ViewportPointToRay (Vector2.one / 2f);
-            var targetWorldPoint = ray.GetPoint (30);
+            var targetWorldPoint = ray.GetPoint (1000);
 
             _photonServer.OpRaiseEvent (GameEventCode.ChangeShootCamera, targetWorldPoint, false, ServerSpawnAsteroidSystem.All);
 

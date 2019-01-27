@@ -21,7 +21,7 @@ namespace Client
             var shipView = SceneDescription.Ship;
             foreach (var cannon in shipView.Cannons)
             {
-                cannon.LookAt (target.value);
+                cannon.Root.LookAt (target.value);
             }
         }
     }

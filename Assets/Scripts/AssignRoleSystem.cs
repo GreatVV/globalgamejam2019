@@ -38,29 +38,30 @@ namespace Client
                 var values = Enum.GetValues (typeof (PlayerRole)) as PlayerRole[];
                 if (photonPlayer.CustomProperties.ContainsKey (RoomDataConstants.PlayerRole))
                 {
+                    UnityEngine.Debug.Log ("Role:" + photonPlayer.CustomProperties[RoomDataConstants.PlayerRole]);
                     _gameState.Roles[player.number] = (PlayerRole) photonPlayer.CustomProperties[RoomDataConstants.PlayerRole];
                 }
                 else
                 {
                     var freeRole = _gameState.NextFreeRole ();
                     SetPlayerToRole (_photonServer, _gameState, player.number, freeRole);
-                    
+
                 }
-            }           
+            }
         }
 
         public static void SetPlayerToRole (PhotonServer photonServer, GameState gameState, int actorNumber, PlayerRole newRole)
         {
             var photonPlayer = photonServer.CurrentRoom.Players[actorNumber];
             _hashtable.Clear ();
-            _hashtable[RoomDataConstants.PlayerRole] = (int) newRole;
+            _hashtable[RoomDataConstants.PlayerRole] = (byte) newRole;
             photonPlayer.SetCustomProperties (_hashtable);
             gameState.Roles[actorNumber] = newRole;
             UnityEngine.Debug.Log ($"Assign player {actorNumber} to {newRole}");
 
-             _hashtable.Clear ();
-                _hashtable[RoomDataConstants.PlayerRole] = gameState.Roles.Serialize ();
-                photonServer.CurrentRoom.SetCustomProperties (_hashtable);
+            _hashtable.Clear ();
+            _hashtable[RoomDataConstants.PlayerRole] = gameState.Roles.Serialize ();
+            photonServer.CurrentRoom.SetCustomProperties (_hashtable);
         }
     }
 
