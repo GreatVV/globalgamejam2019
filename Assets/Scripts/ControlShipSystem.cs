@@ -40,15 +40,15 @@ namespace Client
         {
             _hashtable.Clear ();
 
-            var transform = _world.GetComponent<TransformRef>(_gameState.ShipEntity).value;
-            var rigidBody = transform.gameObject.GetComponent<Rigidbody>();
+            var transform = _world.GetComponent<TransformRef> (_gameState.ShipEntity).value;
+            var rigidBody = transform.gameObject.GetComponent<Rigidbody> ();
 
             float TurnSpeed = 0.3f;
             float ForwardSpeed = 30.0f;
 
             Vector2 mousePos = Input.mousePosition;
-            Vector2 centeredMousePos = mousePos - new Vector2(Screen.width, Screen.height) / 2.0f;
-            Debug.Log(centeredMousePos);
+            Vector2 centeredMousePos = mousePos - new Vector2 (Screen.width, Screen.height) / 2.0f;
+            Debug.Log (centeredMousePos);
 
             float pitch = centeredMousePos.y * -1.0f;
             float yaw = centeredMousePos.x;
@@ -56,7 +56,7 @@ namespace Client
 
             rigidBody.velocity = transform.forward * ForwardSpeed;
 
-            rigidBody.AddRelativeTorque(
+            rigidBody.AddRelativeTorque (
                 pitch * TurnSpeed * Time.deltaTime,
                 yaw * TurnSpeed * Time.deltaTime,
                 roll);

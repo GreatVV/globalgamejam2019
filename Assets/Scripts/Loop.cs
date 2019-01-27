@@ -45,8 +45,7 @@ namespace Client
                 .Add (new ServerSystem ())
                 .Add (new LocalPlayerSystem ())
                 .Add (new UpdateShipPositionSystem ())
-                .Add (new ShowRolesSystem ())
-                .Add (new SyncShipPosition ())
+                .Add (new ShowRolesSystem ())                
                 .Add (new MakeMasterSystem ())
                 .Add (new CallForChangeRoleSystem ())
                 .Add (new ControlShootSystem ())
@@ -78,6 +77,7 @@ namespace Client
                 .Initialize ();
 
             _lateUpdateSystems
+                .Add (new SyncShipPosition ())
                 .Add (new SyncRigidbodyPositionToShipSystem ())
                 .Inject (GameConfig)
                 .Inject (SceneDescription)

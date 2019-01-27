@@ -28,6 +28,9 @@ namespace Client
                             var transform = _world.GetComponent<TransformRef> (_gameState.ShipEntity).value;
                             _hashtable[RoomDataConstants.ShipPosition] = transform.position;
                             _hashtable[RoomDataConstants.ShipRotation] = transform.rotation;
+                            _world.GetComponent<Position> (_gameState.ShipEntity).value = transform.position;
+                            _world.GetComponent<Rotation> (_gameState.ShipEntity).value = transform.rotation;
+
                             _photonServer.CurrentRoom.SetCustomProperties (_hashtable);
                         }
                     }
