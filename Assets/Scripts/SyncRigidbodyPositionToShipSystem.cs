@@ -12,13 +12,15 @@ namespace Client
 
         private PhotonServer _photonServer;
         private readonly Hashtable _hashtable = new Hashtable ();
+
+        private EcsFilter<Local, Role> _player;
         public void Run ()
         {
             if (_photonServer.CurrentRoom != null)
             {
-                var localPlayer = _photonServer.LocalPlayer;
-                if (_playerCache.Entities.TryGetValue (localPlayer.ID, out var playerEntity))
+                if (_player.EntitiesCount > 0)
                 {
+                    var playerEntity = _player.Entities[0];
                     var role = _world.GetComponent<Role> (playerEntity);
                     if (role != null)
                     {

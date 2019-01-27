@@ -19,7 +19,7 @@ namespace Client
 
         protected override void RunReactive ()
         {
-            if (_localPlayer.EntitiesCount > 0 && _localPlayer.Components2[0].value == PlayerRole.Fly)
+            if (_localPlayer.EntitiesCount == 0 || _localPlayer.Components2[0].value == PlayerRole.Fly)
             {
                 return;
             }
@@ -28,9 +28,8 @@ namespace Client
             {
                 var entity = ReactedEntities[i];
                 var shipPosition = World.GetComponent<ShipPosition> (entity);
-                World.EnsureComponent<Position> (_gameState.ShipEntity, out _).value = shipPosition.position;
-                World.EnsureComponent<Rotation> (_gameState.ShipEntity, out _).value = shipPosition.rotation;
-
+                SceneDescription.Ship.transform.position = shipPosition.position;
+                SceneDescription.Ship.transform.rotation = shipPosition.rotation;
             }
         }
     }

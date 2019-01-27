@@ -56,9 +56,20 @@ namespace Client
 
             for (var i = _positions.Count; i < _pointObjects.Count; i++)
             {
-                _pointObjects[i].gameObject.SetActive (false);
+                _pointObjects[i]?.gameObject.SetActive (false);
             }
 
+        }
+
+        /// <summary>
+        /// This function is called when the behaviour becomes disabled or inactive.
+        /// </summary>
+        void OnDisable()
+        {
+             for (var i = 0; i < _pointObjects.Count; i++)
+            {
+                _pointObjects[i]?.gameObject.SetActive (false);
+            }
         }
     }
 
