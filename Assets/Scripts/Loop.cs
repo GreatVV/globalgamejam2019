@@ -28,8 +28,11 @@ namespace Client
             var ship = SceneDescription.CreateShip (_world);
             gameState.ShipEntity = ship;
 
+            SceneDescription.UI.MenuUI.gameObject.SetActive (true);
+
             _systems
                 // Register your systems here, for example:
+                .Add(SceneDescription.UI.MenuUI)
                 .Add (new ConnectToPhotonSystem ())
                 .Add (new ServerSystem ())
                 .Add (new LocalPlayerSystem ())

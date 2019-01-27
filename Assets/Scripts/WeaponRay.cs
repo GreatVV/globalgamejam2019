@@ -14,8 +14,9 @@ namespace Client
 
         public void Set (Vector3 start, Vector3 end)
         {
-            LineRenderer.SetPosition (0, start);
-            LineRenderer.SetPosition (1, end);
+            LineRenderer.useWorldSpace = false;
+            LineRenderer.SetPosition (0, transform.InverseTransformPoint(start));
+            LineRenderer.SetPosition (1, transform.InverseTransformPoint(end));
             _timeLeft = LifeTime;
             LineRenderer.enabled = true;
             ShootAnimation.Play ();

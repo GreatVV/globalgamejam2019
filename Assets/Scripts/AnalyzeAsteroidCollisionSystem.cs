@@ -30,6 +30,10 @@ namespace Client
             for (int i = 0; i < ReactedEntitiesCount; i++)
             {
                 var entity = ReactedEntities[i];
+                if (!_world.IsEntityExists (entity))
+                {
+                    continue;
+                }
                 var asteroidCollision = _world.GetComponent<AsteroidCollision> (entity);
                 health -= _gameConfig.DamageFromAsteroid;
 
@@ -37,7 +41,7 @@ namespace Client
                 _asteroidsId.Add (asteroid.Id);
             }
 
-            _photonServer.OpRaiseEvent (GameEventCode.DamageByAsteroids, _asteroidsId.ToArray(), true, ServerSpawnAsteroidSystem.All);
+            _photonServer.OpRaiseEvent (GameEventCode.DamageByAsteroids, _asteroidsId.ToArray (), true, ServerSpawnAsteroidSystem.All);
 
             _hashtable[RoomDataConstants.Health] = health;
             _photonServer.CurrentRoom.SetCustomProperties (_hashtable);

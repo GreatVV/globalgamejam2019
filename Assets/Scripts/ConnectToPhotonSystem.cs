@@ -17,6 +17,8 @@ namespace Client
 
         private GameState _gameState;
 
+        private SceneDescription _sceneDescription;
+
         private GameConfig _gameConfig;
 
         public void Destroy ()
@@ -30,7 +32,6 @@ namespace Client
         public void Initialize ()
         {
             CustomTypes.Register ();
-            PhotonServer.CallConnect ();
             PhotonServer.OnStateChangeAction += OnStateChanged;
             PhotonServer.OnEventAction += OnEventAction;
             PhotonServer.OnOpResponseAction += OnOperationResponse;
@@ -72,6 +73,8 @@ namespace Client
                                 var newAsteroids = data[RoomDataConstants.Asteroids] as AsteroidDesc[];
                                 _world.CreateEntityWith<SpawnAsteroids> (out var spawnAsteroids);
                             }
+
+                            _sceneDescription.UI.GameUI.gameObject.SetActive (true);
                         }
                     }
                     else
@@ -228,6 +231,7 @@ namespace Client
                 case ClientState.PeerCreated:
                     break;
                 case ClientState.Authenticating:
+                    _sceneDescription.UI.MenuUI.gameObject.SetActive (false);
                     break;
                 case ClientState.Authenticated:
                     break;
