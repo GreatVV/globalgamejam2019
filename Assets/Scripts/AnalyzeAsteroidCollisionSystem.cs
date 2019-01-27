@@ -45,6 +45,12 @@ namespace Client
 
             _hashtable[RoomDataConstants.Health] = health;
             _photonServer.CurrentRoom.SetCustomProperties (_hashtable);
+
+            if (health <= 0)
+            {
+                _photonServer.CurrentRoom.IsOpen = false;
+                _photonServer.CurrentRoom.IsVisible = false;
+            }
         }
     }
 }

@@ -22,20 +22,6 @@ namespace Client
                 {
                     Try (PlayerRole.Shoot);
                 }
-                else
-                {
-                    if (Input.GetKeyDown (KeyCode.Keypad3) || Input.GetKeyDown (KeyCode.Alpha3))
-                    {
-                        Try (PlayerRole.Defend);
-                    }
-                    else
-                    {
-                        if (Input.GetKeyDown (KeyCode.Keypad4) || Input.GetKeyDown (KeyCode.Alpha4))
-                        {
-                            Try (PlayerRole.Heal);
-                        }
-                    }
-                }
             }
         }
 

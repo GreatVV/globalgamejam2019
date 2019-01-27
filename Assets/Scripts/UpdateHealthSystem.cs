@@ -28,6 +28,12 @@ namespace Client
                     health.value = (float) roomData[RoomDataConstants.Health];
 
                     _sceneDescription.UI.GameUI.SetHealth (health.value);
+
+                    if (health.value <= 0)
+                    {
+                        _sceneDescription.UI.GameUI.gameObject.SetActive (false);
+                        _sceneDescription.UI.GameOverScreen.Show (true);
+                    }
                 }
             }
         }

@@ -16,7 +16,8 @@ namespace Client
                 var transformRef = _filter.Components1[index];
                 if (transformRef.value.rotation != rotation.value)
                 {
-                    transformRef.value.rotation = Quaternion.Lerp(transformRef.value.rotation, rotation.value, dt);
+                    //transformRef.value.rotation = Quaternion.Lerp(transformRef.value.rotation, rotation.value, dt);
+                    transformRef.value.rotation = rotation.value;
                 }
             }
         }

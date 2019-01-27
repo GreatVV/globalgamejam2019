@@ -6,5 +6,6 @@ namespace Client
     {
         public GameUI GameUI;
         public MenuUI MenuUI;
+        public GameOverScreen GameOverScreen;
     }
 }

@@ -22,7 +22,7 @@ namespace Client
 
         internal void ConnectToRandomRoom ()
         {
-            OpJoinRandomRoom(null, 4);
+            OpJoinRandomRoom(null, 2);
         }
 
         public void CreateRandomRoom ()
@@ -30,7 +30,7 @@ namespace Client
             UnityEngine.Debug.Log ("Create Random room");
             if (!OpJoinOrCreateRoom (Guid.NewGuid ().ToString (), new RoomOptions ()
                 {
-                    MaxPlayers = 4,
+                    MaxPlayers = 2,
 
                 }, TypedLobby.Default))
             {

@@ -4,8 +4,6 @@ namespace Client
     {
         None = 0,
         Fly = 1,
-        Shoot = 2,
-        Defend = 3,
-        Heal = 4
+        Shoot = 2
     }
 }

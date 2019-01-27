@@ -1,5 +1,6 @@
 using Leopotam.Ecs;
 using Leopotam.Ecs.Reactive;
+using UnityEngine;
 
 namespace Client
 {
@@ -24,14 +25,16 @@ namespace Client
                 {
                     case PlayerRole.Fly:
                         {
-                            UnityEngine.Cursor.visible = true;
+                            Cursor.visible = true;
+                            Cursor.lockState = CursorLockMode.None;
                             _sceneDescription.FlyPlayerCamera?.SetActive (true);
                             _sceneDescription.ShootPlayerCamera?.SetActive (false);
                         }
                         break;
                     case PlayerRole.Shoot:
                         {
-                            UnityEngine.Cursor.visible = false;
+                            Cursor.visible = false;
+                            Cursor.lockState = CursorLockMode.Locked;
                             _sceneDescription.FlyPlayerCamera?.SetActive (false);
                             _sceneDescription.ShootPlayerCamera?.SetActive (true);
                         }
