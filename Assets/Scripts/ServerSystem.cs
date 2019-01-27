@@ -13,6 +13,7 @@ namespace Client
         private PlayerCache PlayerCache;
         private GameState GameState;
         private GameConfig GameConfig;
+        private SoundManager SoundManager;
 
         public void Run ()
         {
@@ -38,6 +39,7 @@ namespace Client
                 .Inject (PlayerCache)
                 .Inject (PhotonServer)
                 .Inject (GameState)
+                .Inject( SoundManager)
                 .Initialize ();
         }
 

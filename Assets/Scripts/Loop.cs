@@ -77,6 +77,7 @@ namespace Client
                 .Inject (playerCache)
                 .Inject (photonServer)
                 .Inject (gameState)
+                .Inject( SoundManager)
                 .Initialize ();
 
             _lateUpdateSystems
@@ -87,6 +88,7 @@ namespace Client
                 .Inject (playerCache)
                 .Inject (photonServer)
                 .Inject (gameState)
+                .Inject( SoundManager)
                 .Initialize ();
         }
 
