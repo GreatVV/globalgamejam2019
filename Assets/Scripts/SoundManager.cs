@@ -5,10 +5,13 @@ namespace Client
 {
     public class SoundManager : MonoBehaviour
     {
-        
+        [SerializeField] private AudioSource _shotSound = null;
+        [SerializeField] private AudioSource _collisionSound = null;
+
         public void PlayShootSound()
         {
-            
+            _shotSound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+            _shotSound.Play();
         }
 
         public void PlayCollisionSound()
