@@ -52,6 +52,7 @@ namespace Client
                     _pointObjects.Add (go);
                 }
                 go.transform.position = camera.ViewportPointToRay (position).GetPoint (10);
+                go.transform.rotation = camera.transform.rotation;
             }
 
             for (var i = _positions.Count; i < _pointObjects.Count; i++)
@@ -64,9 +65,9 @@ namespace Client
         /// <summary>
         /// This function is called when the behaviour becomes disabled or inactive.
         /// </summary>
-        void OnDisable()
+        void OnDisable ()
         {
-             for (var i = 0; i < _pointObjects.Count; i++)
+            for (var i = 0; i < _pointObjects.Count; i++)
             {
                 _pointObjects[i]?.gameObject.SetActive (false);
             }
