@@ -10,6 +10,7 @@ namespace Client
             if (state)
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             gameObject.SetActive (state);
         }

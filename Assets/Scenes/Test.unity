@@ -208,6 +208,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5565090173819638678}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1549636259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549636256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20a93f011e52294b9342db845c09103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarMarker: {fileID: 2552990375590084437, guid: 45706290dffa9f546a33bea7459ebe51,
+    type: 3}
 --- !u!4 &1982644211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1982644211, guid: 04775818e1e82a247a9c3988be560c6a,
@@ -849,5 +863,10 @@ PrefabInstance:
       propertyPath: GameCamera
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 8892637877633733945, guid: 07cc1536d18401144b280c7f886882e1,
+        type: 3}
+      propertyPath: Radar
+      value: 
+      objectReference: {fileID: 1549636259}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07cc1536d18401144b280c7f886882e1, type: 3}

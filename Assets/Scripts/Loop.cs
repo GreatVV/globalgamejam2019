@@ -40,7 +40,7 @@ namespace Client
             _systems
                 // Register your systems here, for example:
                 .Add (SceneDescription.UI.MenuUI)
-                //.Add (SceneDescription.Radar)
+                .Add (SceneDescription.Radar)
                 .Add (new ConnectToPhotonSystem ())
                 .Add (new ServerSystem ())
                 .Add (new LocalPlayerSystem ())
