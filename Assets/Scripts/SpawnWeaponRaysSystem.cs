@@ -12,6 +12,8 @@ namespace Client
 
         private GameState _gameState;
 
+        private SoundManager SoundManager;
+
         protected override EcsReactiveType GetReactiveType ()
         {
             return EcsReactiveType.OnAdded;
@@ -42,9 +44,11 @@ namespace Client
                         cannonView.Root.LookAt (endPosition);
                         cannonView.Ray.Set (cannonView.RayStart.position, endPosition);
                     }
+                    SoundManager.PlayDeathSound (endPosition);
                 }
-
             }
+
+            SoundManager.PlayShootSound ();
         }
     }
 }

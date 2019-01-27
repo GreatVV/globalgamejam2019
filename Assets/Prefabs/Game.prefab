@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8892637877633733950}
   - component: {fileID: 8892637877633733951}
   - component: {fileID: 8892637877633733945}
+  - component: {fileID: 42238387774674100}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneDescription: {fileID: 8892637877633733945}
   GameConfig: {fileID: 11400000, guid: 99dbf76164673e840b181de51e5125ed, type: 2}
+  SoundManager: {fileID: 42238387774674100}
 --- !u!114 &8892637877633733945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,3 +68,15 @@ MonoBehaviour:
   RotationSpeed: 50
   UI: {fileID: 0}
   GameCamera: {fileID: 0}
+--- !u!114 &42238387774674100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892637877633733948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd95e1cf788fd2c44b8b26dfc0d947e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

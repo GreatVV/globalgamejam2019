@@ -21,6 +21,8 @@ namespace Client
 
         private readonly List<int> _asteroidsId = new List<int> ();
 
+        private SoundManager SoundManager;
+
         protected override void RunReactive ()
         {
             _asteroidsId.Clear ();
@@ -45,6 +47,8 @@ namespace Client
 
             _hashtable[RoomDataConstants.Health] = health;
             _photonServer.CurrentRoom.SetCustomProperties (_hashtable);
+
+            SoundManager.PlayCollisionSound ();
 
             if (health <= 0)
             {

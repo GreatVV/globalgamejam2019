@@ -16,6 +16,8 @@ namespace Client
         private EcsSystems _fixedUpdateSystems;
         private EcsSystems _lateUpdateSystems;
 
+        public SoundManager SoundManager;
+
         void OnEnable ()
         {
             _world = new EcsWorld ();
@@ -45,7 +47,7 @@ namespace Client
                 .Add (new ServerSystem ())
                 .Add (new LocalPlayerSystem ())
                 .Add (new UpdateShipPositionSystem ())
-                .Add (new ShowRolesSystem ())                
+                .Add (new ShowRolesSystem ())
                 .Add (new MakeMasterSystem ())
                 .Add (new CallForChangeRoleSystem ())
                 .Add (new ControlShootSystem ())
@@ -65,6 +67,7 @@ namespace Client
                 .Inject (playerCache)
                 .Inject (photonServer)
                 .Inject (gameState)
+                .Inject( SoundManager)
                 .Initialize ();
 
             _fixedUpdateSystems
@@ -111,7 +114,7 @@ namespace Client
             _fixedUpdateSystems.Dispose ();
             _fixedUpdateSystems = null;
 
-            _lateUpdateSystems.Dispose();
+            _lateUpdateSystems.Dispose ();
             _lateUpdateSystems = null;
 
             _world.Dispose ();
