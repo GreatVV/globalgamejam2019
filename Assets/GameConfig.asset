@@ -22,6 +22,7 @@ MonoBehaviour:
   MinAsteroidSpeed: 30
   AsteroidsPrefabs:
   - {fileID: 6796782537111357322, guid: d3464e4f389fd4a42b8f614775ec416b, type: 3}
+  - {fileID: 5131469356399601828, guid: 900960f5c2047484795f8f7912507784, type: 3}
   AsteroidDumpInterval: 15
   DeathDistance: 500
   DamageFromAsteroid: 35
