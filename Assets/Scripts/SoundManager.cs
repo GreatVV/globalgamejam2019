@@ -16,7 +16,8 @@ namespace Client
 
         public void PlayCollisionSound()
         {
-            
+            _collisionSound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+            _collisionSound.Play();
         }
 
         public void PlayDeathSound(Vector3 position) {
