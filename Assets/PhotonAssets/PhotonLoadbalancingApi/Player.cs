@@ -24,10 +24,10 @@ namespace ExitGames.Client.Photon.LoadBalancing
     #if UNITY
     using UnityEngine;
     #endif
-    #if UNITY || NETFX_CORE
+    //#if UNITY || NETFX_CORE
     using Hashtable = ExitGames.Client.Photon.Hashtable;
     using SupportClass = ExitGames.Client.Photon.SupportClass;
-    #endif
+    //#endif
 
 
     /// <summary>
@@ -128,7 +128,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
         /// sync values with the server.
         /// </remarks>
         /// <see cref="SetCustomProperties"/>
-        public Hashtable CustomProperties { get; private set; }
+        public Photon.Hashtable CustomProperties { get; private set; }
 
         /// <summary>Creates a Hashtable with all properties (custom and "well known" ones).</summary>
         /// <remarks>Creates new Hashtables each time used, so if used more often, cache this.</remarks>

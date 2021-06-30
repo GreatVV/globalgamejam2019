@@ -21,10 +21,10 @@ namespace ExitGames.Client.Photon.LoadBalancing
     using UnityEngine;
     using Debug = UnityEngine.Debug;
     #endif
-    #if UNITY || NETFX_CORE
+    //#if UNITY || NETFX_CORE
     using Hashtable = ExitGames.Client.Photon.Hashtable;
     using SupportClass = ExitGames.Client.Photon.SupportClass;
-    #endif
+    //#endif
 
 
     /// <summary>

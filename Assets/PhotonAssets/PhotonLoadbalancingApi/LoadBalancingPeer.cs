@@ -9,7 +9,7 @@
 // <author>developer@photonengine.com</author>
 // ----------------------------------------------------------------------------
 
-#if UNITY_4_7 || UNITY_5 || UNITY_5_0 || UNITY_5_1 || UNITY_2017 || UNITY_2018 
+#if UNITY_4_7 || UNITY_5 || UNITY_5_0 || UNITY_5_1 || UNITY_2017 || UNITY_2018
 #define UNITY
 #endif
 
@@ -24,10 +24,10 @@ namespace ExitGames.Client.Photon.LoadBalancing
     using UnityEngine;
     using Debug = UnityEngine.Debug;
     #endif
-    #if UNITY || NETFX_CORE
+//#if UNITY || NETFX_CORE
     using Hashtable = ExitGames.Client.Photon.Hashtable;
     using SupportClass = ExitGames.Client.Photon.SupportClass;
-    #endif
+//    #endif
 
 
     /// <summary>
@@ -859,7 +859,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
 
     public class OpJoinRandomRoomParams
     {
-        public Hashtable ExpectedCustomRoomProperties;
+        public Photon.Hashtable ExpectedCustomRoomProperties;
         public byte ExpectedMaxPlayers;
         public MatchmakingMode MatchingType;
         public TypedLobby TypedLobby;
@@ -872,7 +872,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
         public string RoomName;
         public RoomOptions RoomOptions;
         public TypedLobby Lobby;
-        public Hashtable PlayerProperties;
+        public Photon.Hashtable PlayerProperties;
         public bool OnGameServer = true; // defaults to true! better send more parameter than too few (GS needs all)
         public bool CreateIfNotExists;
         public bool RejoinOnly;
